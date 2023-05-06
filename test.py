@@ -1,31 +1,24 @@
-def evalRPN(tokens):
-    """
-    :type tokens: List[str]
-    :rtype: int
-    """
-    stack = []
-    token_set = {"+", "-", "/", "*"}
-    for token in tokens:
-        if token not in token_set:
-            stack.append(int(token))
-        else:
-            val1 = stack.pop()
-            val2 = stack.pop()
-            val3 = 0
-            if token == "+":
-                val3 = val2 + val1
-            elif token == "-":
-                val3 = val2 - val1
-            elif token == "/":
-                val3 = val2 / val1
+from typing import List
+
+
+def dailyTemperatures(temperatures: List[int]) -> List[int]:
+
+    ans = []
+    if len(temperatures) == 0:
+        return ans
+    for i in range(len(temperatures) - 1):
+        for j in range(i + 1, len(temperatures)):
+            if temperatures[j] > temperatures[i]:
+                ans.append(j - i)
+                break
             else:
-                val3 = val2 * val1
-            stack.append(int(val3))
-    return stack.pop()
+                j += 1
+            if j == len(temperatures):
+                ans.append(0)
+    ans.append(0)
+    print(ans)
+    return ans
 
 
-
-class Solution(object):
-    temp = evalRPN(["10","6","9","3","+","-11","*","/","*","17","+","5","+"])
-    print(temp)
-
+class Solution:
+    dailyTemperatures([73, 69, 68])
