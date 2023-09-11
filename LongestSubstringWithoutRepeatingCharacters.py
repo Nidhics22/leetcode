@@ -6,7 +6,7 @@ class Solution:
         for j in range(len(s)):
             while s[j] in s_set:
                 s_set.remove(s[i])
-                i+=1
+                i += 1
             s_set.add(s[j])
             ans = max(ans, len(s_set))
         return ans
